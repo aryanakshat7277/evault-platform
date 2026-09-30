@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { CaseService } from '../../../core/services/case.service';
 import { DocumentService } from '../../../core/services/document.service';
+import { UiService } from '../../../core/services/ui.service';
 import { CaseResponse } from '../../../core/models/case.model';
 import { DocumentResponse } from '../../../core/models/document.model';
 
@@ -15,9 +16,20 @@ import { DocumentResponse } from '../../../core/models/document.model';
   template: `
     <header class="app-navbar">
       <div class="navbar-left">
+        @if (authService.isAuthenticated()) {
+          <button 
+            type="button" 
+            class="mobile-nav-toggle" 
+            (click)="uiService.toggleSidebar()" 
+            [attr.aria-label]="uiService.isMobileNavOpen() ? 'Close navigation drawer' : 'Open navigation drawer'"
+            title="Toggle judicial navigation menu">
+            <span class="material-icons">{{ uiService.isMobileNavOpen() ? 'close' : 'menu' }}</span>
+          </button>
+        }
+
         <a routerLink="/dashboard" class="brand-link">
           <div class="emblem-container">
-            <span class="material-icons emblem-icon">gavel</span>
+            <img src="images/evault-emblem.jpg" alt="National Legal Evidence Vault Seal" class="navbar-emblem-img" />
           </div>
 
           <div class="brand-text">
@@ -25,12 +37,6 @@ import { DocumentResponse } from '../../../core/models/document.model';
             <span class="brand-subtitle">National Digital Legal & Evidence Vault</span>
           </div>
         </a>
-
-        <!-- Demo Mode Environment Badge -->
-        <div class="demo-env-badge" title="Local demonstration environment with mock IPFS and simulated EVM blockchain anchor">
-          <span class="demo-env-dot"></span>
-          <span class="demo-env-text">DEMO ENVIRONMENT: LOCAL IPFS & BLOCKCHAIN</span>
-        </div>
       </div>
 
       <div class="navbar-center">
@@ -350,10 +356,33 @@ import { DocumentResponse } from '../../../core/models/document.model';
       min-width: 0;
     }
 
+    .mobile-nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      .material-icons {
+        font-size: 22px;
+      }
+    }
+
     .brand-link {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: inherit;
       min-width: 0;
@@ -363,17 +392,21 @@ import { DocumentResponse } from '../../../core/models/document.model';
       width: 38px;
       height: 38px;
       background: rgba(217, 119, 6, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.4);
+      border: 1.5px solid rgba(245, 158, 11, 0.5);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #f59e0b;
       flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
     }
 
-    .emblem-icon {
-      font-size: 20px;
+    .navbar-emblem-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
     }
 
     .brand-text {
@@ -543,13 +576,38 @@ import { DocumentResponse } from '../../../core/models/document.model';
 
 
     /* =========================================================
-       TABLET
+       TABLET & DESKTOP COLLAPSE (< 1024px)
        ========================================================= */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
+      .demo-env-badge {
+        display: none !important;
+      }
+    }
 
+    @media (max-width: 900px) {
       .app-navbar {
-        padding: 0 16px;
+        padding: 0 14px;
+        gap: 8px;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+
+      .quick-search-btn {
+        padding: 6px 10px;
+        .search-text, .search-kbd {
+          display: none;
+        }
+      }
+
+      .sih-tour-btn {
+        padding: 6px 10px;
+        margin-right: 4px;
+        .tour-text {
+          display: none;
+        }
       }
 
       .brand-subtitle {
@@ -557,27 +615,32 @@ import { DocumentResponse } from '../../../core/models/document.model';
       }
 
       .user-name {
-        max-width: 150px;
+        max-width: 130px;
       }
-
     }
 
 
     /* =========================================================
-       MOBILE
+       MOBILE (< 768px)
        ========================================================= */
 
     @media (max-width: 768px) {
-
       .app-navbar {
         height: 58px;
-        padding: 0 12px;
-        gap: 8px;
+        padding: 0 10px;
+        gap: 6px;
       }
 
       .navbar-left {
         flex: 1;
         min-width: 0;
+        gap: 8px;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+        width: 34px;
+        height: 34px;
       }
 
       .brand-link {
@@ -586,16 +649,8 @@ import { DocumentResponse } from '../../../core/models/document.model';
       }
 
       .emblem-container {
-        width: 34px;
-        height: 34px;
-      }
-
-      .emblem-icon {
-        font-size: 18px;
-      }
-
-      .brand-text {
-        min-width: 0;
+        width: 32px;
+        height: 32px;
       }
 
       .brand-title {
@@ -603,36 +658,40 @@ import { DocumentResponse } from '../../../core/models/document.model';
       }
 
       .brand-subtitle {
-        font-size: 0.52rem;
-        line-height: 1.15;
-        max-width: 150px;
-        white-space: normal;
+        display: none;
       }
 
       .navbar-center {
-        flex-shrink: 0;
+        gap: 6px;
+      }
+
+      .quick-search-btn {
+        padding: 6px 8px;
+        .search-icon {
+          font-size: 18px;
+        }
+      }
+
+      .sih-tour-btn {
+        padding: 6px 8px;
+        margin-right: 0;
+        .tour-icon {
+          font-size: 18px;
+        }
       }
 
       .verify-badge-btn {
         padding: 6px 10px;
-        gap: 5px;
-        font-size: 0.7rem;
-        white-space: nowrap;
-      }
-
-      .shield-icon {
-        font-size: 14px;
-      }
-
-      .navbar-right {
-        flex-shrink: 0;
-        gap: 0;
+        gap: 4px;
+        font-size: 0.72rem;
       }
 
       .user-identity-pill {
-        padding: 4px;
+        padding: 3px;
         border-radius: 50%;
         max-width: none;
+        border: none;
+        background: transparent;
       }
 
       .avatar-circle {
@@ -640,132 +699,87 @@ import { DocumentResponse } from '../../../core/models/document.model';
         height: 32px;
       }
 
-      .user-info {
+      .user-info, .dropdown-arrow {
         display: none;
       }
-
     }
 
 
     /* =========================================================
-       SMALL MOBILE
+       SMALL MOBILE (< 480px)
        ========================================================= */
 
     @media (max-width: 480px) {
-
       .app-navbar {
-        height: 56px;
+        height: 54px;
         padding: 0 8px;
-        gap: 6px;
+        gap: 4px;
       }
 
-      .brand-link {
-        gap: 6px;
+      .mobile-nav-toggle {
+        width: 30px;
+        height: 30px;
+        .material-icons { font-size: 20px; }
       }
 
       .emblem-container {
-        width: 32px;
-        height: 32px;
-      }
-
-      .emblem-icon {
-        font-size: 17px;
+        width: 28px;
+        height: 28px;
       }
 
       .brand-title {
         font-size: 0.95rem;
       }
 
-      .brand-subtitle {
-        display: none;
-      }
-
-      .verify-badge-btn {
-        padding: 6px 9px;
-        font-size: 0.68rem;
+      .navbar-center {
         gap: 4px;
       }
 
-      .shield-icon {
-        font-size: 13px;
+      .quick-search-btn {
+        padding: 5px 6px;
+        border-radius: 6px;
+        .search-icon { font-size: 16px; }
+      }
+
+      .sih-tour-btn {
+        padding: 5px 6px;
+        border-radius: 6px;
+        .tour-icon { font-size: 16px; }
+      }
+
+      .verify-badge-btn {
+        padding: 5px 8px;
+        font-size: 0.68rem;
+        gap: 3px;
+        span:last-child {
+          display: none;
+        }
       }
 
       .avatar-circle {
-        width: 31px;
-        height: 31px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
       }
-
     }
 
 
     /* =========================================================
-       VERY SMALL MOBILE
+       VERY SMALL MOBILE (< 360px)
        ========================================================= */
 
     @media (max-width: 360px) {
-
       .app-navbar {
-        padding: 0 6px;
-        gap: 5px;
-      }
-
-      .emblem-container {
-        width: 30px;
-        height: 30px;
-      }
-
-      .emblem-icon {
-        font-size: 16px;
+        padding: 0 4px;
       }
 
       .brand-title {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
       }
 
-      .verify-badge-btn {
-        padding: 5px 7px;
-        font-size: 0.62rem;
+      .quick-search-btn, .sih-tour-btn {
+        padding: 4px;
       }
-
-      .shield-icon {
-        font-size: 12px;
-      }
-
-      .avatar-circle {
-        width: 30px;
-        height: 30px;
-        font-size: 0.7rem;
-      }
-
-    }
-
-    /* Demo Environment Badge */
-    .demo-env-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.35);
-      padding: 4px 10px;
-      border-radius: 9999px;
-      margin-left: 8px;
-    }
-
-    .demo-env-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #f59e0b;
-      box-shadow: 0 0 6px #f59e0b;
-    }
-
-    .demo-env-text {
-      font-size: 0.65rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: #fbbf24;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
     }
 
     /* SIH Tour Button */
@@ -1424,6 +1438,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
+    public uiService: UiService,
     private router: Router,
     private caseService: CaseService,
     private documentService: DocumentService

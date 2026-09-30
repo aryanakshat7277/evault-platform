@@ -14,23 +14,26 @@ import { VerificationResult } from '../../core/models/verification.model';
   imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <div class="documents-page">
-      <!-- Header -->
-      <div class="page-header">
-        <div>
+      <!-- Header with Shield Art -->
+      <div class="page-header gov-card doc-header-banner">
+        <div class="header-text-content">
           <div class="breadcrumb">
             <span>DASHBOARD</span>
             <span class="separator">/</span>
             <span class="active">DOCUMENT VAULT</span>
           </div>
           <h1 class="page-title">Digital Evidence & Document Archive</h1>
-          <p class="page-subtitle">Central repository of all notarized FIRs, chargesheets, forensics, and court orders</p>
+          <p class="page-subtitle">Central repository of all notarized FIRs, chargesheets, forensics, and court orders anchored to blockchain</p>
+          <div class="header-actions">
+            <a routerLink="/verification" class="gov-btn gov-btn-secondary">
+              <span class="material-icons">verified</span>
+              Independent Hash Verifier
+            </a>
+          </div>
         </div>
 
-        <div class="header-actions">
-          <a routerLink="/verification" class="gov-btn gov-btn-secondary">
-            <span class="material-icons">verified</span>
-            Independent Hash Verifier
-          </a>
+        <div class="header-art-box">
+          <img src="images/tamper-shield.jpg" alt="Cryptographic Shield" class="header-emblem-art" />
         </div>
       </div>
 
@@ -159,7 +162,7 @@ import { VerificationResult } from '../../core/models/verification.model';
               <tr *ngIf="filteredDocs().length === 0">
                 <td colspan="7" class="empty-cell">
                   <div class="empty-state">
-                    <span class="material-icons">search_off</span>
+                    <img src="images/tamper-shield.jpg" alt="No Documents Found" class="empty-state-art" />
                     <h4>No legal documents found matching criteria</h4>
                     <p>Try resetting filters or checking other case dockets.</p>
                   </div>
@@ -483,6 +486,69 @@ import { VerificationResult } from '../../core/models/verification.model';
       justify-content: flex-end;
       padding: var(--space-4) var(--space-6);
       border-top: 1px solid #e2e8f0;
+    }
+
+    .doc-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      border-top: 4px solid var(--gov-gold);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      margin-bottom: var(--space-6);
+    }
+
+    .header-text-content {
+      flex: 1;
+      min-width: 0;
+
+      .header-actions {
+        margin-top: var(--space-4);
+      }
+    }
+
+    .header-art-box {
+      flex-shrink: 0;
+      width: 140px;
+      height: 96px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      .header-emblem-art {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .empty-state-art {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #b8860b;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.18);
+    }
+
+    @media (max-width: 768px) {
+      .doc-header-banner {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .header-art-box {
+        width: 100%;
+        height: 120px;
+      }
     }
   `]
 })

@@ -1143,6 +1143,10 @@ import { VerificationResult } from '../../core/models/verification.model';
       border-bottom: 2px solid #e2e8f0;
       margin-bottom: var(--space-6);
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      padding-bottom: 2px;
     }
 
     .tab-btn {
@@ -2225,6 +2229,76 @@ import { VerificationResult } from '../../core/models/verification.model';
     .btn-block {
       width: 100%;
       justify-content: center;
+    }
+
+    @media (max-width: 992px) {
+      .overview-grid {
+        flex-direction: column !important;
+        gap: 16px !important;
+
+        .col-8, .col-4 {
+          flex: 1 1 100% !important;
+          width: 100% !important;
+        }
+      }
+
+      .evidence-showcase-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+
+        .nav-actions {
+          width: 100% !important;
+          display: flex !important;
+          gap: 8px !important;
+
+          button {
+            flex: 1 1 auto !important;
+            justify-content: center !important;
+          }
+        }
+      }
+
+      .banner-top {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+      }
+
+      .quick-stats {
+        width: 100% !important;
+        justify-content: space-between !important;
+      }
+
+      .stat-pill {
+        align-items: flex-start !important;
+      }
+
+      .meta-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .case-title {
+        font-size: 1.25rem !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .meta-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .tab-btn {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+      }
     }
   `]
 })

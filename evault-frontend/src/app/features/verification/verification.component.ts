@@ -131,11 +131,16 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
 
           <!-- Placeholder when no verification yet -->
           <div *ngIf="!result() && !verifying" class="placeholder-state">
-            <div class="placeholder-icon-wrap">
-              <span class="material-icons placeholder-icon">fingerprint</span>
+            <div class="placeholder-seal-wrap">
+              <img src="images/tamper-shield.jpg" alt="Cryptographic Security Seal" class="placeholder-seal-img" />
             </div>
             <h4>Ready to Verify Document Integrity</h4>
-            <p>Select a file from your computer or click one of the automated simulation buttons above to check bitwise hash validity.</p>
+            <p>Select a file from your computer or click one of the automated simulation buttons above to check bitwise hash validity against the decentralized ledger.</p>
+            <div class="placeholder-badges">
+              <span class="badge badge-success">✓ FIPS 180-4 SHA-256</span>
+              <span class="badge badge-info">✓ IPFS CID Cluster</span>
+              <span class="badge badge-warning">✓ EVM Block Proof</span>
+            </div>
           </div>
 
           <!-- Loading state -->
@@ -462,7 +467,7 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
             <div class="printable-certificate">
               <div class="cert-gov-header">
                 <div class="cert-emblem-wrap">
-                  <span class="material-icons cert-emblem">gavel</span>
+                  <img src="images/evault-emblem.jpg" alt="Government Seal" class="cert-seal-img" />
                 </div>
                 <div class="cert-authority-title">
                   <h2>HIGH COURT OF DELHI • SPECIAL SESSIONS COURT NO. 4</h2>
@@ -767,20 +772,30 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
       text-align: center;
       color: #64748b;
 
-      .placeholder-icon-wrap {
-        width: 64px;
-        height: 64px;
-        border-radius: 50%;
-        background: #f1f5f9;
+      .placeholder-seal-wrap {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 16px auto;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 16px auto;
 
-        .placeholder-icon {
-          font-size: 32px;
-          color: #94a3b8;
+        .placeholder-seal-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          border-radius: 12px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         }
+      }
+
+      .placeholder-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 14px;
       }
 
       h4 { color: #1e293b; margin: 0 0 6px 0; font-size: 15px; }
@@ -1137,14 +1152,20 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
         height: 52px;
         border-radius: 10px;
         background: #0f172a;
-        color: #f59e0b;
         border: 2px solid #d97706;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        overflow: hidden;
 
-        .cert-emblem { font-size: 30px; }
+        .cert-seal-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .cert-emblem { font-size: 30px; color: #f59e0b; }
       }
 
       .cert-authority-title {

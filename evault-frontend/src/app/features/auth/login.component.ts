@@ -18,7 +18,7 @@ import { AuthService } from '../../core/services/auth.service';
         <div class="login-card">
           <div class="portal-header">
             <div class="emblem-wrapper">
-              <span class="material-icons emblem-icon">gavel</span>
+              <img src="images/evault-emblem.jpg" alt="National Legal Vault" class="login-emblem-img" />
             </div>
             <div class="header-titles">
               <span class="sub-agency">DIGITAL COURTS & EVIDENCE REPOSITORY</span>
@@ -302,6 +302,14 @@ import { AuthService } from '../../core/services/auth.service';
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(217, 119, 6, 0.25);
+
+      .login-emblem-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
 
       .emblem-icon {
         color: #f59e0b;

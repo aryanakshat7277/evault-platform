@@ -11,16 +11,24 @@ import { Evidence, ChainOfCustodyEvent } from '../../core/models/evidence.model'
   imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <div class="evidence-page">
-      <!-- Header -->
-      <div class="page-header">
-        <div>
+      <!-- Header with Forensic Art -->
+      <div class="page-header gov-card evidence-header-banner">
+        <div class="header-text-content">
           <div class="breadcrumb">
             <span>DASHBOARD</span>
             <span class="separator">/</span>
             <span class="active">EVIDENCE REGISTRY</span>
           </div>
           <h1 class="page-title">Forensic & Physical Evidence Locker</h1>
-          <p class="page-subtitle">Chain-of-custody tracking with tamper-evident seal verification and forensic lifecycle logs</p>
+          <p class="page-subtitle">Chain-of-custody tracking with tamper-evident seal verification and forensic lifecycle logs under BSA standards</p>
+          <div class="header-badges">
+            <span class="badge badge-success"><span class="material-icons">lock</span> ISO 17025 Verified</span>
+            <span class="badge badge-info"><span class="material-icons">qr_code_scanner</span> Barcode Tracked</span>
+          </div>
+        </div>
+
+        <div class="header-art-box">
+          <img src="images/forensic-evidence.jpg" alt="Forensic Evidence Laboratory" class="header-emblem-art" />
         </div>
       </div>
 
@@ -127,7 +135,7 @@ import { Evidence, ChainOfCustodyEvent } from '../../core/models/evidence.model'
               <tr *ngIf="filteredEvidence().length === 0">
                 <td colspan="7" class="empty-cell">
                   <div class="empty-state">
-                    <span class="material-icons">inventory_2</span>
+                    <img src="images/forensic-evidence.jpg" alt="No Evidence Found" class="empty-state-art" />
                     <h4>No evidence items match your filters</h4>
                     <p>Evidence registered in case dockets will automatically show up here.</p>
                   </div>
@@ -452,6 +460,86 @@ import { Evidence, ChainOfCustodyEvent } from '../../core/models/evidence.model'
       align-items: center;
       margin-bottom: var(--space-2);
       h4 { margin: 0; font-size: 13px; color: #0f172a; font-weight: 700; }
+    }
+
+    .evidence-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      border-top: 4px solid var(--gov-gold);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      margin-bottom: var(--space-6);
+    }
+
+    .header-text-content {
+      flex: 1;
+      min-width: 0;
+
+      .header-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+
+        .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          padding: 4px 10px;
+          font-size: 11px;
+          font-weight: 700;
+          border-radius: 4px;
+
+          .material-icons {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .header-art-box {
+      flex-shrink: 0;
+      width: 140px;
+      height: 96px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      .header-emblem-art {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .empty-state-art {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #b8860b;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.18);
+    }
+
+    @media (max-width: 768px) {
+      .evidence-header-banner {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .header-art-box {
+        width: 100%;
+        height: 120px;
+      }
     }
   `]
 })

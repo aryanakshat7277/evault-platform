@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
           <!-- Brand Identity (Left) -->
           <a (click)="scrollToSection('home', $event)" href="#home" class="brand" aria-label="eVault Home">
             <div class="brand-emblem">
-              <span class="material-icons-outlined">gavel</span>
+              <img src="images/evault-emblem.jpg" alt="National Legal Vault Seal" class="brand-emblem-img" />
             </div>
             <div class="brand-text">
               <span class="brand-title">eVault</span>
@@ -206,6 +206,14 @@ import { RouterModule } from '@angular/router';
 
             <!-- Right Column: Professional Legal-Tech Evidence Graphic -->
             <div class="hero-visual-col">
+              <div class="hero-court-banner">
+                <img src="images/judicial-vault-hero.jpg" alt="Supreme Court Digital Bench" class="court-hero-img" />
+                <div class="court-hero-caption">
+                  <span class="pulse-dot"></span>
+                  <span>SUPREME COURT BENCH &bull; ON-CHAIN ANCHOR ACTIVE</span>
+                </div>
+              </div>
+
               <div class="evidence-vault-card">
                 <!-- Card Header with Seal -->
                 <div class="ev-card-top">
@@ -338,6 +346,24 @@ import { RouterModule } from '@angular/router';
             <p>Engineered to satisfy Section 65B Indian Evidence Act digital forensics standards with mathematical immutability.</p>
           </div>
 
+          <div class="security-hero-banner">
+            <div class="sec-banner-image">
+              <img src="images/tamper-shield.jpg" alt="Cryptographic Padlock and Tamper Shield" class="tamper-seal-img" />
+            </div>
+            <div class="sec-banner-text">
+              <span class="badge badge-success">ZERO-KNOWLEDGE MATHEMATICAL CONSENSUS</span>
+              <h3>Bitwise Invariance & Tamper Detection</h3>
+              <p>
+                Every electronic document entered into the judicial stream receives a FIPS 180-4 SHA-256 fingerprint anchored to the DocumentRegistry smart contract. Any bitwise deviation triggers an automatic judicial tamper alert.
+              </p>
+              <div class="sec-banner-tags">
+                <span class="tag-pill"><span class="material-icons-outlined">verified</span> Smart Contract Anchored</span>
+                <span class="tag-pill"><span class="material-icons-outlined">share</span> IPFS Content Addressing</span>
+                <span class="tag-pill"><span class="material-icons-outlined">gavel</span> Sec 65B Admissible</span>
+              </div>
+            </div>
+          </div>
+
           <div class="security-grid">
             <div class="sec-card">
               <div class="sec-icon-wrap">
@@ -381,6 +407,22 @@ import { RouterModule } from '@angular/router';
             <span class="section-eyebrow">ENTERPRISE CAPABILITIES</span>
             <h2>Comprehensive Evidence Management Suite</h2>
             <p>End-to-end tooling purpose-built for law enforcement agencies, prosecution departments, and courtrooms.</p>
+          </div>
+
+          <div class="forensics-feature-strip">
+            <div class="forensics-strip-content">
+              <span class="badge badge-info">DIGITAL FORENSICS INTEGRATION</span>
+              <h3>Forensic Laboratory Evidence & Physical Seal Locker</h3>
+              <p>Unifies digital cyber evidence (toxicology, ballistics, hard drive forensic images) with barcode-sealed physical evidence lockers under Section 65B of the Indian Evidence Act.</p>
+              <div class="forensics-strip-pills">
+                <span class="feat-pill"><span class="material-icons-outlined">qr_code_scanner</span> Barcode Seal Verification</span>
+                <span class="feat-pill"><span class="material-icons-outlined">biotech</span> CFSL Specimen Tracking</span>
+                <span class="feat-pill"><span class="material-icons-outlined">lock_clock</span> Custody Handover Log</span>
+              </div>
+            </div>
+            <div class="forensics-strip-img-wrap">
+              <img src="images/forensic-evidence.jpg" alt="Digital Forensics Laboratory Workstation" class="forensics-img" />
+            </div>
           </div>
 
           <div class="features-grid">
@@ -479,6 +521,17 @@ import { RouterModule } from '@angular/router';
             <p>eVault is engineered to establish cryptographic truth and eliminate record tampering in criminal and civil judicial administration.</p>
           </div>
 
+          <div class="about-hero-strip">
+            <div class="about-hero-img-wrap">
+              <img src="images/justice-scales.jpg" alt="Scales of Justice & Constitution" class="scales-hero-img" />
+            </div>
+            <div class="about-hero-text">
+              <span class="badge badge-gold">CONSTITUTIONAL ADMISSIBILITY</span>
+              <h3>Section 65B Electronic Record Admissibility</h3>
+              <p>Under Indian legal precedent (Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal), electronic records require strict verification of custody and absence of tampering. eVault satisfies these statutory requirements mathematically using distributed consensus.</p>
+            </div>
+          </div>
+
           <div class="about-grid">
             <div class="about-card">
               <h3>Our Mandate</h3>
@@ -501,8 +554,8 @@ import { RouterModule } from '@angular/router';
         <div class="container footer-content">
           <div class="footer-left">
             <div class="footer-brand">
-              <span class="material-icons-outlined">gavel</span>
-              <strong>eVault</strong>
+              <img src="images/evault-emblem.jpg" alt="National Emblem" class="footer-emblem-img" />
+              <strong>eVault National Judicial Portal</strong>
             </div>
             <p>© 2026 eVault — National Digital Legal Document & Court Evidence Vault. Section 65B Certified Forensic Architecture.</p>
           </div>
@@ -592,17 +645,20 @@ import { RouterModule } from '@angular/router';
       width: 38px;
       height: 38px;
       background: #0B1F3A;
-      color: #F59E0B;
-      border: 1px solid rgba(245, 158, 11, 0.35);
+      border: 1.5px solid rgba(245, 158, 11, 0.4);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
       transition: transform 0.2s ease;
+    }
 
-      .material-icons-outlined {
-        font-size: 20px;
-      }
+    .brand-emblem-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .brand:hover .brand-emblem {
@@ -1020,7 +1076,49 @@ import { RouterModule } from '@angular/router';
     /* Right Column: Evidence Vault Card Graphic */
     .hero-visual-col {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-court-banner {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid #cbd5e1;
+      box-shadow: 0 8px 24px -4px rgba(11, 31, 58, 0.12);
+      margin-bottom: 16px;
+      background: #0f172a;
+    }
+
+    .court-hero-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    .court-hero-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.5) 70%, transparent);
+      color: #ffffff;
+      padding: 12px 14px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     .evidence-vault-card {
@@ -1307,6 +1405,77 @@ import { RouterModule } from '@angular/router';
       border-bottom: 1px solid var(--border-light);
     }
 
+    .security-hero-banner {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .sec-banner-image {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tamper-seal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .sec-banner-text {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary-navy);
+        margin: 6px 0 8px;
+      }
+
+      p {
+        font-size: 0.875rem;
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+    }
+
+    .sec-banner-tags, .forensics-strip-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .tag-pill, .feat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #f1f5f9;
+        border: 1px solid #cbd5e1;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #1e3a8a;
+
+        .material-icons-outlined {
+          font-size: 14px;
+        }
+      }
+    }
+
     .security-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -1357,6 +1526,53 @@ import { RouterModule } from '@angular/router';
     .features-section {
       padding: 72px 0;
       background-color: var(--bg-slate);
+    }
+
+    .forensics-feature-strip {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .forensics-strip-content {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary-navy);
+        margin: 6px 0 8px;
+      }
+
+      p {
+        font-size: 0.875rem;
+        color: #475569;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+    }
+
+    .forensics-strip-img-wrap {
+      width: 200px;
+      height: 130px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .forensics-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .features-grid {
@@ -1516,6 +1732,54 @@ import { RouterModule } from '@angular/router';
       background-color: var(--bg-slate);
     }
 
+    .about-hero-strip {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .about-hero-img-wrap {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scales-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .about-hero-text {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--primary-navy);
+        margin: 6px 0 8px;
+      }
+
+      p {
+        font-size: 0.875rem;
+        color: #475569;
+        line-height: 1.6;
+      }
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1566,13 +1830,18 @@ import { RouterModule } from '@angular/router';
       .footer-brand {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
         color: var(--white);
         font-size: 1.125rem;
         font-weight: 700;
         margin-bottom: 6px;
 
-        .material-icons-outlined { color: #F59E0B; }
+        .footer-emblem-img {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+          border-radius: 4px;
+        }
       }
 
       p {
@@ -1614,6 +1883,26 @@ import { RouterModule } from '@angular/router';
     }
 
     @media (max-width: 900px) {
+      .security-hero-banner, .forensics-feature-strip, .about-hero-strip {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 16px !important;
+        padding: 20px !important;
+      }
+      .sec-banner-image, .about-hero-img-wrap {
+        width: 100px !important;
+        height: 100px !important;
+        margin: 0 auto;
+      }
+      .forensics-strip-img-wrap {
+        width: 100% !important;
+        max-width: 320px !important;
+        height: 150px !important;
+        margin: 0 auto;
+      }
+      .sec-banner-tags, .forensics-strip-pills {
+        justify-content: center !important;
+      }
       .stats-ribbon { grid-template-columns: repeat(2, 1fr); }
       .flow-steps { grid-template-columns: 1fr; }
       .security-grid { grid-template-columns: 1fr; }

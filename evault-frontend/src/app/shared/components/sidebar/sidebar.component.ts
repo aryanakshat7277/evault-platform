@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { UiService } from '../../../core/services/ui.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,25 +10,9 @@ import { AuthService } from '../../../core/services/auth.service';
   imports: [CommonModule, RouterModule],
   template: `
     <!-- =========================================================
-         MOBILE MENU BUTTON
-         ========================================================= -->
-    <button
-      class="mobile-menu-btn"
-      type="button"
-      (click)="toggleMobileSidebar()"
-      [attr.aria-label]="mobileSidebarOpen ? 'Close navigation menu' : 'Open navigation menu'"
-      [attr.aria-expanded]="mobileSidebarOpen">
-
-      <span class="material-icons">
-        {{ mobileSidebarOpen ? 'close' : 'menu' }}
-      </span>
-    </button>
-
-
-    <!-- =========================================================
          MOBILE OVERLAY
          ========================================================= -->
-    @if (mobileSidebarOpen) {
+    @if (uiService.isMobileNavOpen()) {
       <div
         class="sidebar-overlay"
         (click)="closeMobileSidebar()"
@@ -41,13 +26,13 @@ import { AuthService } from '../../../core/services/auth.service';
          ========================================================= -->
     <aside
       class="app-sidebar"
-      [class.mobile-open]="mobileSidebarOpen">
+      [class.mobile-open]="uiService.isMobileNavOpen()">
 
       <!-- Mobile Sidebar Header -->
       <div class="mobile-sidebar-header">
         <div class="mobile-sidebar-brand">
           <div class="mobile-brand-icon">
-            <span class="material-icons">gavel</span>
+            <img src="images/evault-emblem.jpg" alt="National Legal Evidence Vault" class="sidebar-emblem-img" />
           </div>
 
           <div>
@@ -956,61 +941,16 @@ import { AuthService } from '../../../core/services/auth.service';
       }
 
 
-      .mobile-close-btn .material-icons {
-        font-size: 20px;
+      .sidebar-emblem-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
       }
-
-
-      /*
-       * Hamburger
-       */
-
-      .mobile-menu-btn {
-        position: fixed;
-
-        top: 67px;
-        left: 10px;
-
-        width: 42px;
-        height: 42px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        background: #0f172a;
-
-        color: #ffffff;
-
-        border: 1px solid #334155;
-
-        border-radius: 10px;
-
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
-
-        cursor: pointer;
-
-        z-index: 1200;
-
-        transition: all 0.2s ease;
-      }
-
-
-      .mobile-menu-btn:hover {
-        background: #1e293b;
-      }
-
-
-      .mobile-menu-btn .material-icons {
-        font-size: 23px;
-      }
-
 
       /*
        * Overlay
        */
-
       .sidebar-overlay {
         display: block;
 
@@ -1159,48 +1099,16 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class SidebarComponent {
 
-  /*
-   * Mobile sidebar state
-   */
-  mobileSidebarOpen = false;
-
-
-  constructor(public authService: AuthService) {}
-
-
-  /*
-   * Open / close mobile sidebar
-   */
-  toggleMobileSidebar(): void {
-    this.mobileSidebarOpen = !this.mobileSidebarOpen;
-
-    this.updateBodyScroll();
-  }
-
+  constructor(
+    public authService: AuthService,
+    public uiService: UiService
+  ) {}
 
   /*
    * Close mobile sidebar
    */
   closeMobileSidebar(): void {
-    this.mobileSidebarOpen = false;
-
-    this.updateBodyScroll();
-  }
-
-
-  /*
-   * Prevent page scrolling when drawer is open
-   */
-  private updateBodyScroll(): void {
-    if (typeof document === 'undefined') {
-      return;
-    }
-
-    if (window.innerWidth <= 768) {
-      document.body.style.overflow = this.mobileSidebarOpen
-        ? 'hidden'
-        : '';
-    }
+    this.uiService.closeSidebar();
   }
 
 

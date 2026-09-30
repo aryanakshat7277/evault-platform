@@ -284,7 +284,14 @@ p  { color: #475569; }
 
 .table-responsive {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  .gov-table, .table {
+    min-width: 700px;
+  }
 }
 
 /* Badge System */
@@ -482,3 +489,102 @@ p  { color: #475569; }
     display: none !important;
   }
 }
+
+/* ==========================================================================
+   Global Responsive Mobile Overrides (Preventing Overlaps & Mismatches)
+   ========================================================================== */
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.official-seal-badge {
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+  border: 2px solid #f59e0b;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+
+    .header-actions, .header-badges {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .gov-btn, .btn {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+    }
+  }
+
+  .filter-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    padding: 14px !important;
+
+    .search-box {
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .filter-group {
+      width: 100% !important;
+      display: flex !important;
+      flex-wrap: wrap !important;
+      gap: 8px !important;
+
+      .gov-select {
+        flex: 1 1 130px !important;
+        width: auto !important;
+        min-width: 0 !important;
+      }
+
+      .gov-btn {
+        flex: 0 0 auto !important;
+      }
+    }
+  }
+
+  .modal-dialog {
+    max-width: 95vw !important;
+    margin: 10px auto !important;
+  }
+
+  .form-row {
+    flex-direction: column !important;
+    gap: 0 !important;
+
+    .col-6, .col-12 {
+      flex: 1 1 100% !important;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .gov-card, .card {
+    padding: 14px !important;
+  }
+
+  .page-title {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .page-subtitle {
+    font-size: 0.8125rem !important;
+  }
+
+  .breadcrumb {
+    font-size: 10px !important;
+  }
+}
+

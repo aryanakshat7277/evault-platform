@@ -76,6 +76,41 @@ import { DashboardStats, DashboardCharts } from '../../core/models/dashboard.mod
 
 
       <!-- =====================================================
+           JUDICIAL EVIDENCE VAULT HERO BANNER
+           ===================================================== -->
+      <div class="judicial-hero-card card">
+        <div class="hero-card-left">
+          <div class="hero-badge-tag">
+            <span class="material-icons-outlined">gavel</span>
+            <span>NATIONAL DIGITAL LEGAL & EVIDENCE VAULT</span>
+          </div>
+          <h2>Section 65B Electronic Evidence Management System</h2>
+          <p>
+            Connected to EVM Consensus Ledger and decentralized IPFS cluster. All chargesheets, FIRs, and forensic records are cryptographically notarized with zero-tampering guarantees.
+          </p>
+          <div class="hero-telemetry-row">
+            <div class="telemetry-pill">
+              <span class="tel-lbl">Consensus Block:</span>
+              <span class="tel-val font-mono">#{{ blockHeight() }}</span>
+            </div>
+            <div class="telemetry-pill">
+              <span class="tel-lbl">Node Latency:</span>
+              <span class="tel-val font-mono text-success">{{ networkLatency() }}</span>
+            </div>
+            <div class="telemetry-pill">
+              <span class="tel-lbl">Active Peers:</span>
+              <span class="tel-val font-mono text-primary">{{ peerCount() }} Nodes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-right">
+          <img src="images/judicial-vault-hero.jpg" alt="Supreme Court Digital Bench" class="hero-bench-img" />
+        </div>
+      </div>
+
+
+      <!-- =====================================================
            TAMPER ALERT
            ===================================================== -->
 
@@ -2143,8 +2178,115 @@ import { DashboardStats, DashboardCharts } from '../../core/models/dashboard.mod
       }
 
 
-      .telemetry-item > .badge {
+      /* -------------------------------------------------------
+         JUDICIAL HERO CARD
+         ------------------------------------------------------- */
+      .judicial-hero-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        padding: 24px 28px;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+      }
+
+      .hero-card-left {
+        flex: 1;
+        min-width: 0;
+
+        h2 {
+          font-size: 1.25rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 8px 0;
+          letter-spacing: -0.01em;
+        }
+
+        p {
+          font-size: 0.84rem;
+          color: #475569;
+          line-height: 1.55;
+          margin-bottom: 16px;
+        }
+      }
+
+      .hero-badge-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.6875rem;
+        font-family: var(--font-mono);
+        font-weight: 800;
+        color: #b45309;
+        background: #fef3c7;
+        border: 1px solid #fde68a;
+        padding: 3px 10px;
+        border-radius: 9999px;
+
+        .material-icons-outlined {
+          font-size: 14px;
+        }
+      }
+
+      .hero-telemetry-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .telemetry-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+
+        .tel-lbl {
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        .tel-val {
+          font-weight: 700;
+        }
+      }
+
+      .hero-card-right {
+        width: 240px;
+        height: 145px;
         flex-shrink: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1.5px solid #cbd5e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .hero-bench-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      @media (max-width: 900px) {
+        .judicial-hero-card {
+          flex-direction: column !important;
+          align-items: stretch !important;
+          padding: 18px !important;
+          gap: 16px !important;
+        }
+
+        .hero-card-right {
+          width: 100% !important;
+          height: 160px !important;
+        }
       }
 
       .pulse-dot {

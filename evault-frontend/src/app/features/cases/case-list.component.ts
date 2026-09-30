@@ -12,9 +12,9 @@ import { LegalCase, CreateCaseRequest } from '../../core/models/case.model';
   imports: [CommonModule, RouterModule, FormsModule],
   template: `
     <div class="cases-page">
-      <!-- Page Header -->
-      <div class="page-header">
-        <div>
+      <!-- Page Header with Judicial Art -->
+      <div class="page-header gov-card case-header-banner">
+        <div class="header-text-content">
           <div class="breadcrumb">
             <span>DASHBOARD</span>
             <span class="separator">/</span>
@@ -22,13 +22,16 @@ import { LegalCase, CreateCaseRequest } from '../../core/models/case.model';
           </div>
           <h1 class="page-title">Court Case Registry</h1>
           <p class="page-subtitle">Digitally anchored legal dockets with cryptographic evidence chains and role-gated access</p>
+          <div class="header-actions">
+            <button *ngIf="canCreateCase()" (click)="openCreateModal()" class="gov-btn gov-btn-primary">
+              <span class="material-icons">add_circle</span>
+              Register New Docket
+            </button>
+          </div>
         </div>
 
-        <div class="header-actions">
-          <button *ngIf="canCreateCase()" (click)="openCreateModal()" class="gov-btn gov-btn-primary">
-            <span class="material-icons">add_circle</span>
-            Register New Docket
-          </button>
+        <div class="header-art-box">
+          <img src="images/justice-scales.jpg" alt="Scales of Justice" class="header-emblem-art" />
         </div>
       </div>
 
@@ -149,7 +152,7 @@ import { LegalCase, CreateCaseRequest } from '../../core/models/case.model';
               <tr *ngIf="filteredCases().length === 0">
                 <td colspan="8" class="empty-cell">
                   <div class="empty-state">
-                    <span class="material-icons empty-icon">folder_off</span>
+                    <img src="images/justice-scales.jpg" alt="No Cases Found" class="empty-state-art" />
                     <h3>No matching court cases found</h3>
                     <p>Try adjusting your search criteria or register a new case docket.</p>
                   </div>
@@ -669,6 +672,68 @@ import { LegalCase, CreateCaseRequest } from '../../core/models/case.model';
       padding-top: var(--space-4);
       border-top: 1px solid #e2e8f0;
       margin-top: var(--space-4);
+    }
+
+    .case-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      border-top: 4px solid var(--gov-gold);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+
+    .header-text-content {
+      flex: 1;
+      min-width: 0;
+
+      .header-actions {
+        margin-top: var(--space-4);
+      }
+    }
+
+    .header-art-box {
+      flex-shrink: 0;
+      width: 140px;
+      height: 96px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      .header-emblem-art {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .empty-state-art {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #b8860b;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.18);
+    }
+
+    @media (max-width: 768px) {
+      .case-header-banner {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .header-art-box {
+        width: 100%;
+        height: 120px;
+      }
     }
   `]
 })
