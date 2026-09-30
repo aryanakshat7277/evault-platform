@@ -1,0 +1,33 @@
+# Dependencies
+**/node_modules/
+package-lock.json
+
+# Build outputs
+**/dist/
+**/target/
+**/.angular/
+**/.gradle/
+**/build/
+
+# Database files
+**/data/*.db
+**/data/*.mv.db
+**/data/*.trace.db
+**/data/*.lock.db
+
+# IDE & OS
+.idea/
+.vscode/
+*.iml
+*.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Env & temporary files
+.env
+.env.local
+*.tmp

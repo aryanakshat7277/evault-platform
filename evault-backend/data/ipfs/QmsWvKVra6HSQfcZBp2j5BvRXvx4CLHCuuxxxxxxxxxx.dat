@@ -1,0 +1,6 @@
+CENTRAL FORENSIC SCIENCE LABORATORY (CFSL) EXAMINATION REPORT
+Report Reference: CFSL-DL-CYBER-2026-8812
+Subject: Bit-stream image analysis of Seized Western Digital HDD (S/N: WD-CYB-8831)
+Forensic Examiner: Senior Scientific Officer (Digital Evidence)
+Findings: Extracted 14 deleted PDF files with forged digital signatures matching hash SHA-256.
+Integrity Confirmation: Physical write-blocker utilized during extraction.
