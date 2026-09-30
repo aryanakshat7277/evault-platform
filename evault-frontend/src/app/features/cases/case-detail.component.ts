@@ -154,6 +154,14 @@ import { VerificationResult } from '../../core/models/verification.model';
                 <span class="val text-warning">OFFICIAL SENSITIVE (GOV)</span>
               </div>
             </div>
+
+            <div class="dossier-preview-card">
+              <img src="images/investigation-dossier.jpg" alt="Official Judicial Case Docket" class="dossier-img" />
+              <div class="dossier-caption">
+                <span class="material-icons">verified</span>
+                <span>Physical-Digital Synchronized Judicial Dossier</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -351,6 +359,24 @@ import { VerificationResult } from '../../core/models/verification.model';
 
       <!-- TAB 4: CHAIN OF CUSTODY -->
       <div class="tab-content" *ngIf="activeTab === 'custody'">
+        <!-- Custody Hero Banner with Image -->
+        <div class="custody-banner-card gov-card">
+          <div class="custody-banner-text">
+            <span class="badge badge-success mb-2">
+              <span class="material-icons text-xs">verified</span> Cryptographically Unbroken Chain
+            </span>
+            <h3>Forensic Evidence Custody & Handover Locker</h3>
+            <p>Every physical exhibit transfer between Investigating Officer, Forensic Science Laboratory, and Judicial Bench is logged with tamper-evident barcodes, dual biometric verification, and EVM block anchoring.</p>
+            <div class="custody-feature-tags">
+              <span class="tag-pill"><span class="material-icons text-xs">lock</span> ISO 17025 Certified</span>
+              <span class="tag-pill"><span class="material-icons text-xs">fingerprint</span> Section 65B Compliant</span>
+            </div>
+          </div>
+          <div class="custody-banner-art-wrap">
+            <img src="images/custody-handover.jpg" alt="Forensic Custody Handover" class="custody-banner-img" />
+          </div>
+        </div>
+
         <div class="gov-card">
           <div class="custody-header">
             <div>
@@ -1249,6 +1275,121 @@ import { VerificationResult } from '../../core/models/verification.model';
 
       .key { color: #64748b; }
       .val { color: #0f172a; font-weight: 600; }
+    }
+
+    .dossier-preview-card {
+      margin-top: var(--space-4);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+
+      .dossier-img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .dossier-caption {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #1e3a8a;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+
+        .material-icons {
+          font-size: 14px;
+          color: #b45309;
+        }
+      }
+    }
+
+    .custody-banner-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 28px;
+      border-top: 4px solid var(--gov-gold);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      margin-bottom: var(--space-6);
+
+      .custody-banner-text {
+        flex: 1;
+        min-width: 0;
+
+        h3 {
+          font-size: 1.125rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 6px 0 8px 0;
+        }
+
+        p {
+          font-size: 0.8125rem;
+          color: #475569;
+          line-height: 1.5;
+          margin: 0 0 12px 0;
+        }
+
+        .custody-feature-tags {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+
+          .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            border-radius: 4px;
+          }
+        }
+      }
+
+      .custody-banner-art-wrap {
+        flex-shrink: 0;
+        width: 180px;
+        height: 110px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #cbd5e1;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+        .custody-banner-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .custody-banner-card {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+
+        .custody-banner-art-wrap {
+          width: 100%;
+          height: 140px;
+        }
+      }
     }
 
     .card-toolbar {

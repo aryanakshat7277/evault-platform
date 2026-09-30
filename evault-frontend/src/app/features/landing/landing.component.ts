@@ -490,6 +490,9 @@ import { RouterModule } from '@angular/router';
             </div>
             <div class="verif-visual">
               <div class="visual-card">
+                <div class="vc-seal-showcase">
+                  <img src="images/certificate-seal.jpg" alt="Section 65B Golden Notarization Crest" class="landing-cert-seal-img" />
+                </div>
                 <div class="vc-header">
                   <span class="material-icons-outlined text-success">verified</span>
                   <strong>INTEGRITY VERIFIED</strong>
@@ -534,16 +537,33 @@ import { RouterModule } from '@angular/router';
 
           <div class="about-grid">
             <div class="about-card">
-              <h3>Our Mandate</h3>
-              <p>To provide modern law enforcement, prosecutors, advocates, and judicial benches with an impenetrable, tamper-evident digital evidence repository that guarantees document authenticity throughout legal proceedings.</p>
+              <div class="about-card-img-wrap">
+                <img src="images/courtroom-gateway.jpg" alt="High Court Mandate" class="about-card-art" />
+              </div>
+              <div class="about-card-body">
+                <h3>Our Mandate</h3>
+                <p>To provide modern law enforcement, prosecutors, advocates, and judicial benches with an impenetrable, tamper-evident digital evidence repository that guarantees document authenticity throughout legal proceedings.</p>
+              </div>
             </div>
+
             <div class="about-card">
-              <h3>Judicial Standards Alignment</h3>
-              <p>Architected in alignment with the Indian e-Courts Integrated Mission Mode Project, Section 65B of the Indian Evidence Act, and ISO/IEC 27037 standards for digital evidence handling.</p>
+              <div class="about-card-img-wrap">
+                <img src="images/investigation-dossier.jpg" alt="Judicial Standards Alignment" class="about-card-art" />
+              </div>
+              <div class="about-card-body">
+                <h3>Judicial Standards Alignment</h3>
+                <p>Architected in alignment with the Indian e-Courts Integrated Mission Mode Project, Section 65B of the Indian Evidence Act, and ISO/IEC 27037 standards for digital evidence handling.</p>
+              </div>
             </div>
+
             <div class="about-card">
-              <h3>Zero-Knowledge Verifiability</h3>
-              <p>By leveraging cryptographic hashes on Ethereum-compatible blockchains, anyone can verify whether a judicial record has been modified without requiring access to sensitive case contents.</p>
+              <div class="about-card-img-wrap">
+                <img src="images/audit-ledger.jpg" alt="Zero-Knowledge Verifiability" class="about-card-art" />
+              </div>
+              <div class="about-card-body">
+                <h3>Zero-Knowledge Verifiability</h3>
+                <p>By leveraging cryptographic hashes on Ethereum-compatible blockchains, anyone can verify whether a judicial record has been modified without requiring access to sensitive case contents.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1690,6 +1710,20 @@ import { RouterModule } from '@angular/router';
       padding: 24px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 
+      .vc-seal-showcase {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+
+        .landing-cert-seal-img {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+        }
+      }
+
       .vc-header {
         display: flex;
         align-items: center;
@@ -1790,19 +1824,48 @@ import { RouterModule } from '@angular/router';
       background: var(--white);
       border: 1px solid var(--border-light);
       border-radius: 12px;
-      padding: 28px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-      h3 {
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: var(--primary-navy);
-        margin-bottom: 10px;
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(11, 31, 58, 0.08);
       }
 
-      p {
-        font-size: 0.875rem;
-        color: #475569;
-        line-height: 1.6;
+      .about-card-img-wrap {
+        width: 100%;
+        height: 140px;
+        overflow: hidden;
+        border-bottom: 2px solid var(--gov-gold);
+
+        .about-card-art {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+      }
+
+      .about-card-body {
+        padding: 24px;
+        flex: 1;
+
+        h3 {
+          font-size: 1.125rem;
+          font-weight: 700;
+          color: var(--primary-navy);
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 0.875rem;
+          color: #475569;
+          line-height: 1.6;
+          margin: 0;
+        }
       }
     }
 

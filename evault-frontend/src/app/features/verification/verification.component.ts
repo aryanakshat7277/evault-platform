@@ -153,8 +153,8 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
           <!-- VERIFIED RESULT -->
           <div *ngIf="result() && result()?.status === 'VERIFIED'" class="verif-report">
             <div class="verif-banner banner-success">
-              <div class="icon-wrap">
-                <span class="material-icons">verified</span>
+              <div class="icon-wrap verified-seal-icon-wrap">
+                <img src="images/certificate-seal.jpg" alt="Certified Authentic Notarization Seal" class="verified-seal-icon-img" />
               </div>
               <div class="banner-body">
                 <h3 class="banner-title">DOCUMENT INTEGRITY VERIFIED</h3>
@@ -541,8 +541,8 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
                 </div>
                 <div class="sig-col text-right">
                   <div class="seal-mark">
-                    <span class="material-icons seal-icon">verified</span>
-                    <span>CRYPTOGRAPHICALLY SEALED</span>
+                    <img src="images/certificate-seal.jpg" alt="Official Notarization Crest" class="cert-signature-seal-img" />
+                    <span>CRYPTOGRAPHICALLY NOTARIZED</span>
                   </div>
                   <div class="sig-name">Hon'ble Justice K. S. Verma</div>
                   <div class="sig-title">Presiding Judge • Special Sessions Court No. 4</div>
@@ -1249,17 +1249,31 @@ import { DocumentVerificationResult, TamperIncident } from '../../core/models/ve
       .seal-mark {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         color: #15803d;
         font-size: 0.75rem;
         font-weight: 800;
-        border: 1.5px solid #16a34a;
-        background: #f0fdf4;
-        padding: 4px 10px;
-        border-radius: 20px;
+        border: 1.5px solid #d97706;
+        background: #fffbeb;
+        padding: 6px 12px;
+        border-radius: 24px;
         margin-bottom: 10px;
 
-        .seal-icon { font-size: 16px; }
+        .cert-signature-seal-img {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
+        }
+      }
+
+      .verified-seal-icon-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
       }
 
       .sig-name { font-size: 0.9375rem; font-weight: 800; color: #0f172a; }

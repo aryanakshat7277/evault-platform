@@ -16,6 +16,13 @@ import { AuthService } from '../../core/services/auth.service';
       <div class="login-container">
         <!-- Brand / Header Card -->
         <div class="login-card">
+          <div class="login-court-banner">
+            <img src="images/courtroom-gateway.jpg" alt="High Court Judicial Gateway" class="login-court-img" />
+            <div class="court-banner-overlay">
+              <span class="court-tag">NATIONAL DIGITAL JUDICIARY INFRASTRUCTURE</span>
+            </div>
+          </div>
+
           <div class="portal-header">
             <div class="emblem-wrapper">
               <img src="images/evault-emblem.jpg" alt="National Legal Vault" class="login-emblem-img" />
@@ -281,6 +288,43 @@ import { AuthService } from '../../core/services/auth.service';
       border-radius: 14px;
       box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
       padding: 36px 36px 28px 36px;
+      overflow: hidden;
+    }
+
+    .login-court-banner {
+      width: calc(100% + 72px);
+      margin: -36px -36px 24px -36px;
+      height: 140px;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 2px solid var(--gov-gold);
+
+      .login-court-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .court-banner-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 6px 18px;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
+        display: flex;
+        align-items: center;
+
+        .court-tag {
+          font-size: 10px;
+          font-family: var(--font-mono);
+          font-weight: 800;
+          color: #fbbf24;
+          letter-spacing: 0.08em;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+      }
     }
 
     .portal-header {
@@ -713,6 +757,17 @@ import { AuthService } from '../../core/services/auth.service';
       &:hover {
         color: #2563eb;
         text-decoration: underline;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 24px 18px 20px 18px;
+      }
+      .login-court-banner {
+        width: calc(100% + 36px);
+        margin: -24px -18px 18px -18px;
+        height: 110px;
       }
     }
   `]

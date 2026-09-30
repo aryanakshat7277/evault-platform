@@ -10,9 +10,9 @@ import { AuditLog } from '../../core/models/audit.model';
   imports: [CommonModule, FormsModule],
   template: `
     <div class="audit-page">
-      <!-- Header -->
-      <div class="page-header">
-        <div>
+      <!-- Header with Cybersecurity Art -->
+      <div class="page-header gov-card audit-header-banner">
+        <div class="header-text-content">
           <div class="breadcrumb">
             <span>DASHBOARD</span>
             <span class="separator">/</span>
@@ -20,13 +20,20 @@ import { AuditLog } from '../../core/models/audit.model';
           </div>
           <h1 class="page-title">Immutable Security Audit Ledger</h1>
           <p class="page-subtitle">Cryptographically sequenced, append-only log of all user logins, uploads, verifications, and security events</p>
+          <div class="header-badges">
+            <div class="audit-status-badge">
+              <span class="material-icons text-success">lock</span>
+              <span>WORM Compliant</span>
+            </div>
+            <div class="audit-status-badge">
+              <span class="material-icons text-primary">fingerprint</span>
+              <span>SHA-256 Hash Chained</span>
+            </div>
+          </div>
         </div>
 
-        <div class="header-badges">
-          <div class="audit-status-badge">
-            <span class="material-icons text-success">lock</span>
-            <span>WORM (Write Once Read Many) Compliant</span>
-          </div>
+        <div class="header-art-box">
+          <img src="images/audit-ledger.jpg" alt="Cybersecurity Division Audit Unit" class="header-emblem-art" />
         </div>
       </div>
 
@@ -130,8 +137,8 @@ import { AuditLog } from '../../core/models/audit.model';
 
               <tr *ngIf="filteredLogs().length === 0">
                 <td colspan="8" class="empty-cell text-center" style="padding: 32px;">
-                  <span class="material-icons" style="font-size: 36px; color: var(--color-slate-600);">policy</span>
-                  <h4 class="mt-2 text-slate-200">No matching audit events found</h4>
+                  <img src="images/audit-ledger.jpg" alt="No Audit Events" class="empty-state-art" />
+                  <h4 class="mt-2 text-slate-800 font-bold">No matching audit events found</h4>
                   <p class="text-secondary text-sm">Adjust search keywords or filter options.</p>
                 </td>
               </tr>
@@ -281,6 +288,73 @@ import { AuditLog } from '../../core/models/audit.model';
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    .audit-header-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      border-top: 4px solid var(--gov-gold);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      margin-bottom: var(--space-6);
+    }
+
+    .header-text-content {
+      flex: 1;
+      min-width: 0;
+
+      .header-badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+    }
+
+    .header-art-box {
+      flex-shrink: 0;
+      width: 150px;
+      height: 96px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+      .header-emblem-art {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    .empty-state-art {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 2px solid #b8860b;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.18);
+      display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+      .audit-header-banner {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .header-art-box {
+        width: 100%;
+        height: 120px;
+      }
+    }
   `]
 })
 export class AuditListComponent implements OnInit {
